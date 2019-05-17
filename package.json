@@ -2,10 +2,13 @@
   "name": "sabacc",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
+    "express": "^4.17.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
+    "react-scripts": "3.0.1",
+    "socket.io": "^2.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
