@@ -8,6 +8,10 @@ const io = socketIO(server);
 io.on('connection', (socket) => {
     console.log(socket.id);
     socket.emit('ID', socket.id);
+    socket.on('join party', ({ username, party }) => {
+        socket.emit('join party', { username, party })
+    });
+    socket.on('create party', (data) => console.log('create party', data));
     socket.on('disconnect', () => {
         console.log('user disconnected');
     });
