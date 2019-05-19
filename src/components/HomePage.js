@@ -1,8 +1,9 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { useStore } from '../store/StoreContext';
 
 const HomePage = () => {
-    const { joinGame } = useStore();
+    const { url, joinGame } = useStore();
     const handleSubmit = e => {
         e.preventDefault();
         // Convert formData to object
@@ -12,6 +13,7 @@ const HomePage = () => {
 
     return (
         <div className="HomePage">
+            {url && <Redirect to={`/game/${url}`} />}
             <form onSubmit={handleSubmit}>
                 <label htmlFor="username">Username</label>
                 <input id="username" name="username" type="text" />
