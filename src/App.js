@@ -8,7 +8,7 @@ class App extends Component {
 
         this.state = {
             username: null,
-            party: null,
+            game: null,
             url: null,
             error: null
         };
@@ -16,41 +16,41 @@ class App extends Component {
 
     componentDidMount() {
         this.socket = io('localhost:3000');
-        this.socket.on('join party', ({ error, url }) => {
+        this.socket.on('join game', ({ error, url }) => {
             if (error) {
-                return this.setState({ error, username: null, party: null });
+                return this.setState({ error, username: null, game: null });
             }
 
             this.setState({ url });
         });
     }
 
-    joinParty = ({ username, party }) => {
-        this.socket.emit('join party', { username, party });
-        this.setState({ username, party });
+    joinGame = ({ username, game }) => {
+        this.socket.emit('join game', { username, game });
+        this.setState({ username, game });
     };
 
     handleSubmit = e => {
         e.preventDefault();
         // Convert formData to object
-        const { username, party } = Object.fromEntries(new FormData(e.target));
-        this.joinParty({ username, party });
+        const { username, game } = Object.fromEntries(new FormData(e.target));
+        this.joinGame({ username, game });
     };
 
     render() {
-        const { username, party, url, error } = this.state;
+        const { username, game, url, error } = this.state;
         return (
             <div className="App">
                 {username && <p>Username: {username}</p>}
-                {party && <p>Party: {party}</p>}
+                {game && <p>Game: {game}</p>}
                 {url && <p>Url: {url}</p>}
                 {error && <p>Error: {error}</p>}
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="username">Username</label>
                     <input id="username" name="username" type="text" />
-                    <label htmlFor="party">Party</label>
-                    <input id="party" name="party" type="text" />
-                    <button type="submit">Join or create a party</button>
+                    <label htmlFor="game">Game</label>
+                    <input id="game" name="game" type="text" />
+                    <button type="submit">Join or create a game</button>
                 </form>
             </div>
         );

@@ -10,15 +10,15 @@ const games = new GamesManager();
 
 io.on('connection', socket => {
     console.log(socket.id);
-    socket.on('join party', ({ username, party }) => {
+    socket.on('join game', ({ username, game }) => {
         let error;
         let url;
         try {
-            url = games.join(username, party);
+            url = games.join(username, game);
         } catch (e) {
             error = e;
         }
-        socket.emit('join party', { error, url });
+        socket.emit('join game', { error, url });
     });
     socket.on('disconnect', () => {
         console.log('user disconnected');

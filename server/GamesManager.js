@@ -16,8 +16,8 @@ class GamesManager {
         this.games[name] = new Game();
     }
 
-    join(username, party) {
-        const name = slugify(party);
+    join(username, game) {
+        const name = slugify(game);
 
         if (!this.gameExist(name)) {
             this.addGame(name);
