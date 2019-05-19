@@ -19,7 +19,7 @@ const mapDispatchToAllActions = (dispatch, actions) =>
 export const StoreProvider = ({
     reducers,
     actions,
-    initialState,
+    initialState = reducers(null, {}),
     children
 }) => {
     const [state, dispatch] = useReducer(reducers, initialState);
