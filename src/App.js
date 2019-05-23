@@ -4,14 +4,14 @@ import { Switch, Route } from 'react-router-dom';
 import HomePage from './components/HomePage';
 import { useStore } from './store/StoreContext';
 import GamePage from './components/GamePage';
+import useEvents from './events';
 
 const App = () => {
-    const { username, game, url, error } = useStore();
+    const { error } = useStore();
+    useEvents();
+
     return (
         <div className="App">
-            {username && <p>Username: {username}</p>}
-            {game && <p>Game: {game}</p>}
-            {url && <p>Url: {url}</p>}
             {error && <p>Error: {error}</p>}
             <Switch>
                 <Route exact path="/" component={HomePage} />

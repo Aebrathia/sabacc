@@ -1,4 +1,9 @@
-import React, { createContext, useReducer, useContext } from 'react';
+import React, {
+    createContext,
+    useReducer,
+    useContext,
+    useCallback
+} from 'react';
 
 const StoreContext = createContext();
 
@@ -12,7 +17,11 @@ const mapDispatchToAction = (dispatch, action) => (...args) => {
 
 const mapDispatchToAllActions = (dispatch, actions) =>
     Object.keys(actions).reduce((acc, action) => {
-        acc[action] = mapDispatchToAction(dispatch, actions[action]);
+        acc[action] = useCallback(
+            // Prevent action reference from changing
+            mapDispatchToAction(dispatch, actions[action]),
+            [action]
+        );
         return acc;
     }, {});
 

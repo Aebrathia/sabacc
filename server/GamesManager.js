@@ -4,26 +4,26 @@ import Game from './Game.js';
 class GamesManager {
     games = {};
 
-    gameExist(name) {
+    exist(name) {
         return this.games.hasOwnProperty(name);
     }
 
-    getGame(name) {
+    get(name) {
         return this.games[name];
     }
 
-    addGame(name) {
+    add(name) {
         this.games[name] = new Game();
     }
 
     join(username, game) {
-        const name = slugify(game);
+        const name = slugify(game.toLowerCase());
 
-        if (!this.gameExist(name)) {
-            this.addGame(name);
+        if (!this.exist(name)) {
+            this.add(name);
         }
 
-        this.getGame(name).join(username);
+        this.get(name).join(username);
 
         return name;
     }
