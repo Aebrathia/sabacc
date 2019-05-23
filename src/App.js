@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { Switch, Route } from 'react-router-dom';
 import HomePage from './components/HomePage';
-import { useStore } from './store/StoreContext';
+import { useStore } from './StoreContext';
 import GamePage from './components/GamePage';
 import useEvents from './events';
 

@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { StoreProvider } from './store/StoreContext';
+import { StoreProvider } from './StoreContext';
 import { BrowserRouter as Router } from 'react-router-dom';
-import reducers from './store/reducers';
+import reducers from './reducers/index';
 import * as actions from './actions/index';
 
 ReactDOM.render(

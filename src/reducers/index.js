@@ -1,6 +1,6 @@
 import { JOIN_GAME, JOIN_GAME_ERROR, ADD_PLAYER } from '../actions/types';
 
-export const initialState = {
+const initialState = {
     error: null,
     username: null,
     players: {

@@ -42,6 +42,7 @@ export const StoreProvider = ({
 };
 
 // TODO: Should we split state context in slices? i.e. useCountState?
+// TODO: Should we expose useActions in order not to mix state and actions ?
 export function useStore() {
     return useContext(StoreContext);
 }

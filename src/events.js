@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useStore } from './store/StoreContext';
+import { useStore } from './StoreContext';
 import socket from './socket';
 
 const useEvents = () => {

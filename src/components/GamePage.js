@@ -1,5 +1,5 @@
 import React from 'react';
-import { useStore } from '../store/StoreContext';
+import { useStore } from '../StoreContext';
 import Player from './Player/Player.js';
 
 const GamePage = () => {

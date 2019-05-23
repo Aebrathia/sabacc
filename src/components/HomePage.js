@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { useStore } from '../store/StoreContext';
+import { useStore } from '../StoreContext';
 
 const HomePage = () => {
     const { game, joinGame } = useStore();
