@@ -1,4 +1,4 @@
-import { JOIN_GAME, JOIN_GAME_ERROR, ADD_PLAYER } from './types';
+import { JOIN_GAME, JOIN_GAME_ERROR, ADD_PLAYER } from '../actions/types';
 
 export const initialState = {
     error: null,

@@ -1,5 +1,5 @@
-import { JOIN_GAME, JOIN_GAME_ERROR, ADD_PLAYER } from './store/types';
-import socket from './socket';
+import { JOIN_GAME, JOIN_GAME_ERROR, ADD_PLAYER } from './types';
+import socket from '../socket';
 
 export const joinGame = (username, gameName) => dispatch => {
     const confirm = ({ error, slug, players }) => {

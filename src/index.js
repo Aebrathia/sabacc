@@ -5,7 +5,7 @@ import App from './App';
 import { StoreProvider } from './store/StoreContext';
 import { BrowserRouter as Router } from 'react-router-dom';
 import reducers from './store/reducers';
-import * as actions from './actions';
+import * as actions from './actions/index';
 
 ReactDOM.render(
     <StoreProvider actions={actions} reducers={reducers}>
