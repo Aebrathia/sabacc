@@ -1,10 +1,11 @@
 import React from 'react';
 import { useStore } from '../StoreContext';
-import Player from './Player/Player.js';
+import Game from './Game/Game.js';
 import { Redirect } from 'react-router-dom';
 
 const GamePage = ({ match: { params } }) => {
-    const { username, game, players, recoverGame } = useStore();
+    const { username, recoverGame } = useStore();
+
     const shouldTryRecovering = !username;
     const isRecoveringGame =
         shouldTryRecovering && recoverGame(params.game, username);
@@ -16,13 +17,7 @@ const GamePage = ({ match: { params } }) => {
             {shouldTryRecovering && isRecoveringGame ? (
                 <p>Recovering game…</p>
             ) : (
-                <>
-                    <p>{game.name}</p>
-                    {players.allIds.map(player => (
-                        <Player key={player} {...players.byId[player]} />
-                    ))}
-                    <p>{username}</p>
-                </>
+                <Game />
             )}
         </div>
     );
