@@ -11,33 +11,34 @@ const send = (type, data, callback) => {
 };
 
 export const joinGame = (username, gameName) => dispatch => {
-    const confirm = ({ error, slug, players }) => {
-        dispatch(
-            error
-                ? {
-                    type: JOIN_GAME_ERROR,
-                    payload: {
-                        username,
-                        error
-                    }
-                }
-                : {
-                    type: JOIN_GAME,
-                    payload: {
-                        username,
-                        players,
-                        game: {
-                            name: gameName,
-                            slug
+    send(
+        'join game',
+        { username, game: gameName },
+        ({ error, slug, players }) => {
+            dispatch(
+                error
+                    ? {
+                        type: JOIN_GAME_ERROR,
+                        payload: {
+                            username,
+                            error
                         }
                     }
-                }
-        );
-        localStorage.setItem('username', username);
-        socket.off('join game', confirm);
-    };
-    socket.on('join game', confirm);
-    socket.emit('join game', { username, game: gameName });
+                    : {
+                        type: JOIN_GAME,
+                        payload: {
+                            username,
+                            players,
+                            game: {
+                                name: gameName,
+                                slug
+                            }
+                        }
+                    }
+            );
+            localStorage.setItem('username', username);
+        }
+    );
 };
 
 export const addPlayer = ({ username }) => {
