@@ -1,6 +1,10 @@
 import Player from './Player.js';
 
 class Game {
+    constructor({ name }) {
+        this.name = name;
+    }
+
     players = {};
 
     join(username) {
@@ -9,6 +13,11 @@ class Game {
 
     getAllPlayers() {
         return Object.keys(this.players);
+    }
+
+    recover(username) {
+        const { name, players } = this;
+        return { name, players };
     }
 }
 

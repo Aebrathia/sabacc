@@ -1,4 +1,9 @@
-import { JOIN_GAME, JOIN_GAME_ERROR, ADD_PLAYER } from '../actions/types';
+import {
+    JOIN_GAME,
+    JOIN_GAME_ERROR,
+    ADD_PLAYER,
+    RECOVER_GAME
+} from '../actions/types';
 
 const initialState = {
     error: null,
@@ -51,6 +56,18 @@ export default (state = initialState, action) => {
                     [username]: { username }
                 },
                 allIds: [...allIds, username]
+            }
+        };
+    }
+    case RECOVER_GAME: {
+        const { username, game, players } = action.payload;
+        return {
+            ...state,
+            username,
+            game,
+            players: {
+                byId: players,
+                allIds: Object.keys(players)
             }
         };
     }

@@ -11,12 +11,16 @@ const games = new GamesManager();
 io.on('connection', socket => {
     console.log(socket.id);
     socket.on('join game', ({ username, game: gameName }) => {
-        console.log(socket.id, 'has joined the game', gameName);
-        const game = games.join(username, gameName);
+        console.log(username, 'has joined the game', gameName);
+        const game = games.join(gameName, username);
         const players = games.get(game).getAllPlayers();
         socket.join(game);
         socket.broadcast.to(game).emit('add player', { username });
         socket.emit('join game', { error: null, slug: game, players });
+    });
+    socket.on('recover game', ({ slug: game, username }) => {
+        const data = games.get(game).recover(username);
+        socket.emit('recover game', data);
     });
     socket.on('disconnect', () => {
         console.log('user disconnected');
