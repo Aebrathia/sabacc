@@ -17,6 +17,8 @@ class GamesManager {
     }
 
     join(name, username) {
+        // TODO: Append hash for better security
+        // TODO: Ask user's password (local to game)
         const slug = slugify(name.toLowerCase());
 
         if (!this.exist(slug)) {
