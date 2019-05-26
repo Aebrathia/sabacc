@@ -1,14 +1,5 @@
 import { JOIN_GAME, JOIN_GAME_ERROR, ADD_PLAYER, RECOVER_GAME } from './types';
-import socket from '../socket';
-
-const send = (type, data, callback) => {
-    const confirm = response => {
-        callback(response);
-        socket.off(type, confirm);
-    };
-    socket.on(type, confirm);
-    socket.emit(type, data);
-};
+import { send } from '../socket';
 
 export const joinGame = (username, gameName) => dispatch => {
     send(
