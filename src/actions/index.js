@@ -1,5 +1,11 @@
-import { JOIN_GAME, JOIN_GAME_ERROR, ADD_PLAYER, RECOVER_GAME } from './types';
-import { send } from '../socket';
+import {
+    JOIN_GAME,
+    JOIN_GAME_ERROR,
+    ADD_PLAYER,
+    RECOVER_GAME,
+    IS_READY
+} from './types';
+import socket, { send } from '../socket';
 
 export const joinGame = (username, gameName) => dispatch => {
     send(
@@ -63,4 +69,16 @@ export const recoverGame = slug => dispatch => {
     });
 
     return true;
+};
+
+export const setReady = ({ username }) => ({
+    type: IS_READY,
+    payload: {
+        username
+    }
+});
+
+export const setPlayerReady = (username, slug) => {
+    socket.emit('player is ready', { username, slug });
+    return setReady({ username });
 };

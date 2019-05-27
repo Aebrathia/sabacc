@@ -22,6 +22,13 @@ io.on('connection', socket => {
         const data = games.get(game).recover(username);
         socket.emit('recover game', data);
     });
+    socket.on('player is ready', ({ slug: game, username }) => {
+        games
+            .get(game)
+            .getPlayer(username)
+            .setReady();
+        socket.broadcast.to(game).emit('opponent is ready', { username });
+    });
     socket.on('disconnect', () => {
         console.log('user disconnected');
     });

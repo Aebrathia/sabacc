@@ -15,6 +15,10 @@ class Game {
         return Object.keys(this.players);
     }
 
+    getPlayer(username) {
+        return this.players[username];
+    }
+
     recover(username) {
         const { name, players } = this;
         return { name, players };

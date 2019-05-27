@@ -3,11 +3,12 @@ import { useStore } from './StoreContext';
 import socket from './socket';
 
 const useEvents = () => {
-    const { addPlayer } = useStore();
+    const { addPlayer, setReady } = useStore();
 
     useEffect(() => {
         socket.on('add player', addPlayer);
-    }, [addPlayer]);
+        socket.on('opponent is ready', setReady);
+    }, [addPlayer, setReady]);
 };
 
 export default useEvents;

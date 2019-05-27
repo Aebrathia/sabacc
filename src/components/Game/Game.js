@@ -4,7 +4,7 @@ import Opponent from '../Opponent/Opponent';
 import { useStore } from '../../StoreContext';
 
 const Game = () => {
-    const { username, game, players } = useStore();
+    const { username, game, players, setPlayerReady } = useStore();
     const { [username]: player, ...opponents } = players.byId;
     const opponentsIds = players.allIds.filter(id => id !== username);
 
@@ -14,7 +14,10 @@ const Game = () => {
             {opponentsIds.map(id => (
                 <Opponent key={id} {...opponents[id]} />
             ))}
-            <Player {...player} />
+            <Player
+                {...player}
+                setReady={() => setPlayerReady(username, game.slug)}
+            />
         </div>
     );
 };

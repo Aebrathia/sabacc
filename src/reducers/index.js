@@ -2,7 +2,8 @@ import {
     JOIN_GAME,
     JOIN_GAME_ERROR,
     ADD_PLAYER,
-    RECOVER_GAME
+    RECOVER_GAME,
+    IS_READY
 } from '../actions/types';
 
 const initialState = {
@@ -68,6 +69,23 @@ export default (state = initialState, action) => {
             players: {
                 byId: players,
                 allIds: Object.keys(players)
+            }
+        };
+    }
+    case IS_READY: {
+        const { players } = state;
+        const { username } = action.payload;
+        return {
+            ...state,
+            players: {
+                ...players,
+                byId: {
+                    ...players.byId,
+                    [username]: {
+                        ...players.byId[username],
+                        isReady: true
+                    }
+                }
             }
         };
     }
