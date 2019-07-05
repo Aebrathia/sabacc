@@ -2,8 +2,9 @@ import express from 'express';
 import socketIO from 'socket.io';
 import GamesManager from './GamesManager.js';
 
+const PORT = 3001; 
 const app = express();
-const server = app.listen(3000, () => console.log('Listening on 3000'));
+const server = app.listen(PORT, () => console.log(`Listening on ${PORT}`));
 const io = socketIO(server);
 
 const games = new GamesManager();
